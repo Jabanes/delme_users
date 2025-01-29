@@ -32,15 +32,15 @@ class UserCreate(BaseModel):
 
 # FastAPI app
 
-origins = [
-   "https://delme-users-1.onrender.com",
-   "http://127.0.0.1:5500",  # Add the port to specify where the frontend is hosted during development
-   "http://localhost:5500",
-]
+# origins = [
+#    "https://delme-users-1.onrender.com",
+#    "http://127.0.0.1:5500",  # Add the port to specify where the frontend is hosted during development
+#    "http://localhost:5500",
+# ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # List of origins to allow
+    allow_origins=["https://delme-users-1.onrender.com"],  # List of origins to allow
     allow_credentials=True,
     allow_methods=["*"],  # Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],  # Allows all headers
