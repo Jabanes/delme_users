@@ -6,7 +6,6 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
 from fastapi.middleware.cors import CORSMiddleware  # Import CORSMiddleware
 
-import uvicorn
 
 # Database setup
 DATABASE_URL = "sqlite:///./test.db"
@@ -34,12 +33,14 @@ class UserCreate(BaseModel):
 # FastAPI app
 
 origins = [
-   "https://jabanes.github.io/delme-users-front/"
+   "https://jabanes.github.io/delme-users-front/",
+   "http://127.0.0.1:5500",  # Add the port to specify where the frontend is hosted during development
+   "http://localhost:5500",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # List of origins to allow
+    allow_origins=["*"],  # List of origins to allow
     allow_credentials=True,
     allow_methods=["*"],  # Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"],  # Allows all headers
