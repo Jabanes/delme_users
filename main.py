@@ -4,6 +4,8 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
+from fastapi.middleware.cors import CORSMiddleware  # Import CORSMiddleware
+
 import uvicorn
 
 # Database setup
@@ -11,6 +13,8 @@ DATABASE_URL = "sqlite:///./test.db"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+app = FastAPI()
 
 # Model
 class User(Base):
@@ -28,8 +32,18 @@ class UserCreate(BaseModel):
     email: str
 
 # FastAPI app
-app = FastAPI()
 
+origins = [
+   "https://jabanes.github.io/delme-users-front/"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # List of origins to allow
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
 # Dependency to get DB session
 def get_db():
     db = SessionLocal()
