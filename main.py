@@ -33,7 +33,7 @@ class UserCreate(BaseModel):
 # FastAPI app
 
 origins = [
-   "https://jabanes.github.io/delme-users-front/",
+   "https://delme-users-1.onrender.com",
    "http://127.0.0.1:5500",  # Add the port to specify where the frontend is hosted during development
    "http://localhost:5500",
 ]
