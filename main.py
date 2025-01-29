@@ -34,6 +34,7 @@ class UserCreate(BaseModel):
 
 origins = [
    "https://delme-users-1.onrender.com",
+   "https://jade-sunburst-3dc4a3.netlify.app/",
    "http://127.0.0.1:5500",  # Add the port to specify where the frontend is hosted during development
    "http://localhost:5500"
 ]
